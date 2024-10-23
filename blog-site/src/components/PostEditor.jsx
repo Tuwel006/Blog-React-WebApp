@@ -25,7 +25,7 @@ const PostEditor = ({ currentPost = null, onPostSaved }) => {
     };
 
     try {
-      await axios.post('http://localhost:5000/save-post', { post });
+      await axios.post('https://blog-react-webapp-3.onrender.com/save-post', { post });
       alert('Post saved successfully');
       navigate('/author/dashboard');
     } catch (error) {
