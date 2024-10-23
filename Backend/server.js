@@ -8,16 +8,16 @@ const path = require('path');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'blog-site/build')));
+// app.use(express.static(path.join(__dirname, 'blog-site/build')));
 
 const postsFilePath = path.join(__dirname, 'posts.json');
 
 // Initialize posts JSON file if it doesn't exist
 if (!fs.existsSync(postsFilePath)) fs.writeFileSync(postsFilePath, JSON.stringify([]));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+// });
 
 // Get all posts
 app.get('/posts', (req, res) => {

@@ -15,10 +15,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="text-gray-400 hover:text-white transition">Home</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition">About</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition">Services</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition">Contact</a></li>
+            <li><p className="text-gray-400 hover:text-white transition">Home</p></li>
+            <li><p className="text-gray-400 hover:text-white transition">About</p></li>
+            <li><p className="text-gray-400 hover:text-white transition">Services</p></li>
+            <li><p className="text-gray-400 hover:text-white transition">Contact</p></li>
           </ul>
         </div>
 
@@ -26,10 +26,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="text-gray-400 hover:text-white transition">Facebook</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition">Twitter</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition">LinkedIn</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition">Instagram</a></li>
+            <li><p className="text-gray-400 hover:text-white transition">Facebook</p></li>
+            <li><p className="text-gray-400 hover:text-white transition">Twitter</p></li>
+            <li><p className="text-gray-400 hover:text-white transition">LinkedIn</p></li>
+            <li><p className="text-gray-400 hover:text-white transition">Instagram</p></li>
           </ul>
         </div>
       </div>

@@ -17,8 +17,6 @@ const PostDetail = () => {
   const targetButtonRef = useRef(null);
   const [topButtonClicked, setTopButtonClicked] = useState(false);
   const [postNo, setPostNo] = useState(null);
-  const [allPosts, setAllPosts] = useState(null);
-  const [nextPost, setNextPost] = useState(null);
   const [passValue, setPassValue] = useState(null);
   const [nextLink, setNextLink] = useState(null);
   
@@ -67,7 +65,6 @@ const PostDetail = () => {
 
   const nextPostDet = async () => {
     const response = await axios.get(`http://localhost:5000/posts`);
-    setAllPosts(response);
     // console.log(response.data);
     response.data.map((post,index) => {
       if(post.title === postTitle) {
@@ -82,7 +79,7 @@ const PostDetail = () => {
           setNextLink(`/viewer/posts/${response.data[0].title}?id=${id}`);
         }
       }
-
+return 0;
     })
     
     //setNextPost(response.data[postNo+1]);

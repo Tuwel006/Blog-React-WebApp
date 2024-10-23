@@ -1,7 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet';
-import RecentPosts from '../components/RecentPosts';
-import PopularPosts from '../components/PopularPosts';
 import Hero from '../components/Hero';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
