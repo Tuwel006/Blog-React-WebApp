@@ -8,7 +8,7 @@ const PopularPosts = () => {
   useEffect(() => {
     const fetchPopularPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/popular-posts');
+        const response = await axios.get('https://blog-react-webapp-3.onrender.com/popular-posts');
         setPopularPosts(response.data);
       } catch (error) {
         console.error('Error fetching popular posts:', error);

@@ -7,7 +7,7 @@ const RecentPosts = () => {
   useEffect(() => {
     const fetchRecentPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/recent-posts');
+        const response = await axios.get('https://blog-react-webapp-3.onrender.com/recent-posts');
         setRecentPosts(response.data);
       } catch (error) {
         console.error('Error fetching recent posts:', error);
