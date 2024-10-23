@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from 'react';
+import React, { useEffect, useState,useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
@@ -32,26 +32,27 @@ const PostDetail = () => {
 
 
 
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     try {
       const response1 = await axios.get(`http://localhost:5000/posts/${postTitle}`);
-
       setPost(response1.data);
-      //setPostLike(post.likes);
-
+      // Uncomment this line if you want to set the initial post likes
+      // setPostLike(response1.data.likes); 
     } catch (error) {
       console.error('Error fetching post:', error);
     }
-  };
+  }, [postTitle]); // Dependency on postTitle
 
-  const incrementViewCount = async () => {
+  // Increment view count
+  const incrementViewCount = useCallback(async () => {
     try {
       await axios.post(`http://localhost:5000/viewsCount/${postTitle}`);
     } catch (error) {
       console.error('Error incrementing view count:', error);
     }
-  };
+  }, [postTitle]); // Dependency on postTitle
 
+  // Handle liking the post
   const handleLike = async () => {
     try {
       const res = await axios.post(`http://localhost:5000/like-post/${postTitle}`);
@@ -59,39 +60,45 @@ const PostDetail = () => {
         setPostLike(res.data.postLike); // Update the state with the new like count
       }
     } catch (error) {
-      console.log('Error liking the post:', error);
+      console.error('Error liking the post:', error);
     }
   };
 
-  const nextPostDet = async () => {
-    const response = await axios.get(`http://localhost:5000/posts`);
-    // console.log(response.data);
-    response.data.map((post,index) => {
-      if(post.title === postTitle) {
-        setPostNo(index);
-        if(response.data.length>index+1){
-          const newId = new URLSearchParams(window.location.search).get('id');
-          if(id){
-            setNextLink(`/viewer/posts/${response.data[index+1].title}?id=${id}`);
+  // Get next post details
+  const nextPostDet = useCallback(async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/posts`);
+      response.data.forEach((post, index) => {
+        if (post.title === postTitle) {
+          setPostNo(index);
+          if (response.data.length > index + 1) {
+            const newId = new URLSearchParams(window.location.search).get('id');
+            if (newId) {
+              setNextLink(`/viewer/posts/${response.data[index + 1].title}?id=${newId}`);
+            }
+          } else {
+            const newId = new URLSearchParams(window.location.search).get('id');
+            if (newId) {
+              setNextLink(`/viewer/posts/${response.data[0].title}?id=${id}`);
+            }
           }
         }
-        else{
-          setNextLink(`/viewer/posts/${response.data[0].title}?id=${id}`);
-        }
-      }
-return 0;
-    })
-    
-    //setNextPost(response.data[postNo+1]);
-    
-  }
+      });
+    } catch (error) {
+      console.error('Error fetching next post details:', error);
+    }
+  }, [postTitle,id]); // Dependency on postTitle
 
-
-    
-
- // console.log("Post no: "+postNo);
-
+  // Handle the effect for fetching post and related operations
   useEffect(() => {
+    const newId = new URLSearchParams(window.location.search).get('id');
+    setId(newId);
+    
+    fetchPost();
+    incrementViewCount();
+    nextPostDet();
+
+    // Set passValue based on postNo
     if (postNo % 3 === 0) {
       setPassValue(1);
     } else if (postNo % 3 === 1) {
@@ -99,16 +106,13 @@ return 0;
     } else if (postNo % 3 === 2) {
       setPassValue(4);
     }
-    nextPostDet();
-    fetchPost();
-    incrementViewCount();
-    const newId = new URLSearchParams(window.location.search).get('id');
-    setId(newId);
-  }, [postNo]);
+
+  }, [postNo, fetchPost, incrementViewCount, nextPostDet]); // Include necessary dependencies
 
   if (!post) {
     return <div>Loading...</div>;
   }
+
 
   // Generate a description using the first 150 characters of the post content
   const description = post.content.replace(/<[^>]+>/g, '').substring(0, 150) + '...';

@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 const TaskButton = ({ value, targetButtonRef, onTopButtonClick,count,nextLink }) => {
   const [countdown, setCountdown] = useState(count);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const navigator = useNavigate()
 
 
   useEffect(() => {
