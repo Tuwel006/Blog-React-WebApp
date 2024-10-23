@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/posts');
+      const response = await axios.get('https://blog-react-webapp-3.onrender.com/posts');
       setPosts(response.data);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
   const handleDeletePost = async (postId) => {
     try {
-      await axios.delete(`http://localhost:5000/posts/${postId}`);
+      await axios.delete(`https://blog-react-webapp-3.onrender.com/posts/${postId}`);
       alert('Post deleted successfully');
       fetchPosts();
     } catch (error) {
