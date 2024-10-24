@@ -12,7 +12,7 @@ const Home = () => {
 
     const fetchPopularPosts = async () => {
       try {
-        const response = await axios.get('https://blog-react-webapp-3.onrender.com/popular-posts');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/popular-posts`);
         setPopularPosts(response.data);
       } catch (error) {
         console.error('Error fetching popular posts:', error);
@@ -23,7 +23,7 @@ const Home = () => {
 
     const fetchRecentPosts = async () => {
       try {
-        const response = await axios.get('https://blog-react-webapp-3.onrender.com/recent-posts');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/recent-posts`);
         setRecentPosts(response.data);
       } catch (error) {
         console.error('Error fetching recent posts:', error);

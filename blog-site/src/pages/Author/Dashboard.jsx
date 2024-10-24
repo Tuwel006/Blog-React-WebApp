@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('https://blog-react-webapp-3.onrender.com/posts');
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts`);
       setPosts(response.data);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   const fetchAdminData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/admin'); // Update with correct admin.json file path
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin`); // Update with correct admin.json file path
       setAdminData(response.data);
     } catch (error) {
       console.error('Error fetching admin data:', error);
@@ -53,8 +53,8 @@ const Dashboard = () => {
   };
 
   const checkIfAdmin = async () => {
-    const response = await axios.get('http://localhost:5000/admin');
-    console.log("Admin Email: "+localStorage.getItem('adminEmail')); // Assuming we get the current user from admin.json
+    const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin`);
+ // Assuming we get the current user from admin.json
     const currentUser = response.data.find(user => user.email === localStorage.getItem('adminEmail')); // Replace with your logic for user ID
     setAdmin(currentUser?.status === 'Approved' ? 1 : null); // Set admin to 1 if approved, else null
     setCurrentAdmin(currentUser);
@@ -63,7 +63,7 @@ const Dashboard = () => {
   // Remove Admin using DELETE method
   const handleRemoveAdmin = async (adminId) => {
     try {
-      await axios.delete(`http://localhost:5000/admin/${adminId}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/admin/${adminId}`);
       alert('Admin removed successfully');
       fetchAdminData();
     } catch (error) {
@@ -74,7 +74,7 @@ const Dashboard = () => {
   // Approve Admin Request using PATCH method
   const handleApproveRequest = async (requestId) => {
     try {
-      await axios.patch(`http://localhost:5000/admin/${requestId}/approve`);
+      await axios.patch(`${process.env.REACT_APP_SERVER_URL}/admin/${requestId}/approve`);
       alert('Request approved successfully');
       fetchAdminData();
     } catch (error) {
@@ -89,7 +89,7 @@ const Dashboard = () => {
 
   const handleDeletePost = async (postId) => {
     try {
-      await axios.delete(`https://blog-react-webapp-3.onrender.com/posts/${postId}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}`);
       alert('Post deleted successfully');
       fetchPosts();
     } catch (error) {

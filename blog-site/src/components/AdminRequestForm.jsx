@@ -32,7 +32,7 @@ const AdminRequestForm = () => {
 
     try {
       // Send POST request to submit admin request
-      await axios.post('http://localhost:5000/admin/request', { name, email, password });
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/request`, { name, email, password });
       
       // Reset form and show success message
       setFormData({
