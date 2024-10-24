@@ -34,7 +34,7 @@ const PostDetail = () => {
 
   const fetchPost = useCallback(async () => {
     try {
-      const response1 = await axios.get(`http://localhost:5000/posts/${postTitle}`);
+      const response1 = await axios.get(`https://blog-react-webapp-3.onrender.com/posts/${postTitle}`);
       setPost(response1.data);
       // Uncomment this line if you want to set the initial post likes
       // setPostLike(response1.data.likes); 
@@ -46,7 +46,7 @@ const PostDetail = () => {
   // Increment view count
   const incrementViewCount = useCallback(async () => {
     try {
-      await axios.post(`http://localhost:5000/viewsCount/${postTitle}`);
+      await axios.post(`https://blog-react-webapp-3.onrender.com/viewsCount/${postTitle}`);
     } catch (error) {
       console.error('Error incrementing view count:', error);
     }
@@ -55,7 +55,7 @@ const PostDetail = () => {
   // Handle liking the post
   const handleLike = async () => {
     try {
-      const res = await axios.post(`http://localhost:5000/like-post/${postTitle}`);
+      const res = await axios.post(`https://blog-react-webapp-3.onrender.com/like-post/${postTitle}`);
       if (res.status === 200) {
         setPostLike(res.data.postLike); // Update the state with the new like count
       }
@@ -67,7 +67,7 @@ const PostDetail = () => {
   // Get next post details
   const nextPostDet = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/posts`);
+      const response = await axios.get(`https://blog-react-webapp-3.onrender.com/posts`);
       response.data.forEach((post, index) => {
         if (post.title === postTitle) {
           setPostNo(index);

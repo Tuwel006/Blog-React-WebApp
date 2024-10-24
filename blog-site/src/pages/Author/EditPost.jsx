@@ -15,7 +15,7 @@ const EditPost = () => {
   useEffect(() => {
     const fetchDraft = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/drafts');
+        const response = await axios.get('https://blog-react-webapp-3.onrender.com/drafts');
         const draft = response.data.find(d => d.id === draftId);
         if (draft) {
           setTitle(draft.title);
@@ -42,11 +42,11 @@ const EditPost = () => {
 
     try {
       // Update the draft in the backend
-      const draftsResponse = await axios.get('http://localhost:4000/drafts');
+      const draftsResponse = await axios.get('https://blog-react-webapp-3.onrender.com/drafts');
       const drafts = draftsResponse.data.map(d =>
         d.id === draftId ? updatedDraft : d
       );
-      await axios.post('http://localhost:4000/save-draft', { drafts });
+      await axios.post('https://blog-react-webapp-3.onrender.com/save-draft', { drafts });
       alert('Draft updated successfully');
     } catch (error) {
       console.error('Error updating draft:', error);
@@ -65,7 +65,7 @@ const EditPost = () => {
     };
 
     try {
-      await axios.post('http://localhost:4000/publish-post', { post });
+      await axios.post('https://blog-react-webapp-3.onrender.com/publish-post', { post });
       alert('Post published successfully');
       navigate('/author/dashboard');
     } catch (error) {
