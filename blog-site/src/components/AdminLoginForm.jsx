@@ -6,7 +6,7 @@ const AdminLoginForm = ({onAdminApproved}) => {
     email: '',
     password: ''
   });
-  const url = process.env.REACT_App_SERVER_URL;
+  const url = process.env.REACT_APP_SERVER_URL;
   const [error, setError] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
 
