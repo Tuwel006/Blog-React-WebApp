@@ -6,7 +6,7 @@ const AdminLoginForm = ({onAdminApproved}) => {
     email: '',
     password: ''
   });
-  const url = process.env.REACT_APP_SERVER_URL;
+  
   const [error, setError] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
 
@@ -32,7 +32,7 @@ const AdminLoginForm = ({onAdminApproved}) => {
 
     try {
       // Send POST request to validate admin login
-      const response = await axios.post(`${url}/admin/login`, { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/admin/login`, { email, password });
       const admin = response.data.admin;
       if (admin.status === 'Approved') {
         // Redirect to admin dashboard if status is Approved
