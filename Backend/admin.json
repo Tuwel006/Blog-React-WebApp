@@ -1,10 +1,16 @@
 [
-  {},
   {
-    "id": 2,
+    "id": 1,
     "name": "Tuwel Shaikh",
     "email": "tuwelshaikh006@gmail.com",
     "password": "$2b$10$fXyS8AyI37uuRBSI7Md2xeWPNCMNQasExDF912NhFOSKBfFiQdADK",
+    "status": "Approved"
+  },
+  {
+    "id": 2,
+    "name": "Sabbir Ali",
+    "email": "ali18sabbir@gmail.com",
+    "password": "$2a$10$DG2TUMPMc6Zop6zjRl3xg.AUo29lUhIspKPez6SolRO1HPSUpzOYu",
     "status": "Approved"
   }
 ]
