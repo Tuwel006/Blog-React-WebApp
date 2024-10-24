@@ -11,6 +11,10 @@ import PostEditor from './components/PostEditor';
 import RecentPosts from './components/RecentPosts';
 import PopularPosts from './components/PopularPosts';
 import AdSetting from './pages/Author/AdSetting';
+import About from './pages/Viewer/About';
+import Contact from './pages/Viewer/Contact';
+import Service from './pages/Viewer/Service';
+import Code from './components/Code';
 
 function App() {
   return (
@@ -27,6 +31,11 @@ function App() {
           <Route path="/viewer/posts/recent" element={<RecentPosts />} />
           <Route path="/viewer/posts/popular" element={<PopularPosts />} />
           <Route path='author/adsetting' element = {<AdSetting/>} />
+          <Route path='/about' element = {<About/>} />
+          <Route path='/contact' element = {<Contact/>} />
+          <Route path='/services' element = {<Service/>} />
+          <Route path='/generate/code' element = {<Code/>} />
+
 
         </Routes>
       </div>

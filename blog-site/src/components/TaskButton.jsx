@@ -29,9 +29,14 @@ const TaskButton = ({ value, targetButtonRef, onTopButtonClick,count,nextLink })
               behavior: 'smooth',
             });
           }
-    } else if (value === 1 || value === 3 || value === 5) {
+    } else if (value === 1 || value === 3) {
       // Redirect to a specific link
       window.location.href= nextLink; // Replace with your desired URL
+    }
+    else if(value === 5) {
+      const bit = new URLSearchParams(window.location.search).get('bit');
+      const tnk = new URLSearchParams(window.location.search).get('tnk');
+      window.location.href = `/generate/code?bit=${bit}&tnk=${tnk}`;
     }
   };
 
@@ -40,7 +45,7 @@ const TaskButton = ({ value, targetButtonRef, onTopButtonClick,count,nextLink })
       <button 
         onClick={handleButtonClick} 
         disabled={isButtonDisabled} 
-        className={`px-4 py-2 mt-4 text-white ${isButtonDisabled ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-700'}`}
+        className={`px-4 py-2 text-white ${isButtonDisabled ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-700'}`}
       >
         {isButtonDisabled ? `Please Wait... ${countdown}` : <p>{(value===1)? `I'm Not a Robot`: (value===2 ||value===4)?`Continue`:(value=== 3)?`Verify`: (value===5)?`Generate Code`:''}</p>}
       </button>

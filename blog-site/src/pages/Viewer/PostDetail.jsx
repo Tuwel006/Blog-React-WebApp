@@ -13,22 +13,14 @@ const PostDetail = () => {
   const { postTitle } = useParams();
   const [post, setPost] = useState(null);
   const [postLike, setPostLike] = useState(null);
-  const [id, setId] = useState(null);
+  const [bit, setBit] = useState(null);
   const targetButtonRef = useRef(null);
   const [topButtonClicked, setTopButtonClicked] = useState(false);
   const [postNo, setPostNo] = useState(null);
   const [passValue, setPassValue] = useState(null);
   const [nextLink, setNextLink] = useState(null);
+  const [tnk, setTnk] = useState(null);
   
-
-  // useEffect(() => {
-  //   fetchPost();
-  //   incrementViewCount();
-  //   nextPostDet();
-  //   const newId = new URLSearchParams(window.location.search).get('id');
-  //   setId(newId);
-    
-  // }, []);
 
 
 
@@ -72,14 +64,14 @@ const PostDetail = () => {
         if (post.title === postTitle) {
           setPostNo(index);
           if (response.data.length > index + 1) {
-            const newId = new URLSearchParams(window.location.search).get('id');
-            if (newId) {
-              setNextLink(`/viewer/posts/${response.data[index + 1].title}?id=${newId}`);
+            const newBit = new URLSearchParams(window.location.search).get('bit');
+            if (newBit&& tnk) {
+              setNextLink(`/viewer/posts/${response.data[index + 1].title}?bit=${newBit}&tnk=${tnk}`);
             }
           } else {
-            const newId = new URLSearchParams(window.location.search).get('id');
-            if (newId) {
-              setNextLink(`/viewer/posts/${response.data[0].title}?id=${id}`);
+            const newBit = new URLSearchParams(window.location.search).get('bit');
+            if (newBit) {
+              setNextLink(`/viewer/posts/${response.data[0].title}?bit=${bit}&tnk=${tnk}`);
             }
           }
         }
@@ -87,13 +79,14 @@ const PostDetail = () => {
     } catch (error) {
       console.error('Error fetching next post details:', error);
     }
-  }, [postTitle,id]); // Dependency on postTitle
+  }, [postTitle,bit,tnk]); // Dependency on postTitle
 
   // Handle the effect for fetching post and related operations
   useEffect(() => {
-    const newId = new URLSearchParams(window.location.search).get('id');
-    setId(newId);
-    
+    const newBit = new URLSearchParams(window.location.search).get('bit');
+    const newTnk = new URLSearchParams(window.location.search).get('tnk');
+    setBit(newBit)
+    setTnk(newTnk);    
     fetchPost();
     incrementViewCount();
     nextPostDet();
@@ -139,7 +132,7 @@ const PostDetail = () => {
         className="mb-4"
         dangerouslySetInnerHTML={{ __html: post.content.slice(0,200) }}
       />      
-      {id?<TaskButton value={passValue} targetButtonRef={targetButtonRef} onTopButtonClick={handleTopButtonClick} count={10} nextLink={nextLink}/>:''}
+      {(bit&&tnk)?<TaskButton value={passValue} targetButtonRef={targetButtonRef} onTopButtonClick={handleTopButtonClick} count={10} nextLink={nextLink}/>:''}
       <InContentAd/>
 
       <div

@@ -49,7 +49,9 @@ const Header = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-4">
           <Link to="/" className="mr-4">Home</Link>
-          <Link to="/author/dashboard" className="mr-4">Dashboard</Link>
+          <Link to="/about" className="mr-4">About</Link>
+          <Link to="/contact" className="mr-4">Contact</Link>
+          <Link to="/services" className="mr-4">Services</Link>
           <div className="relative">
             <button 
               onClick={togglePostsMenu} 
@@ -77,8 +79,10 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="absolute top-16 left-0 w-full bg-slate-900 text-white md:hidden shadow z-1000">
             <Link to="/" className="block px-4 py-2">Home</Link>
-            <Link to="/author/dashboard" className="block px-4 py-2">Dashboard</Link>
-            <button 
+            <Link to="/about" className="block px-4 py-2">About</Link>
+            <Link to="/contact" className="block px-4 py-2">Contact</Link>
+            <Link to="/services" className="block px-4 py-2">Services</Link>
+              <button 
               onClick={togglePostsMenu} 
               className="block w-full text-left px-4 py-2"
             >
