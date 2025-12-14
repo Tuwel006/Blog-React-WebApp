@@ -7,7 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Dashboard from './pages/Author/Dashboard';
+
 import Posts from './pages/Viewer/Posts';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
